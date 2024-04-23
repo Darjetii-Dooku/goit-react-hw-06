@@ -1,5 +1,16 @@
-const SearchBox = ({ filter, onChangeFilter} ) => {
-    // console.log(onChangeFilter);
+import { useDispatch, useSelector } from "react-redux"
+import { changeFilter } from "../../redux/filterSlice";
+
+const SearchBox = () => {
+    const dispatch = useDispatch();
+    const filter = useSelector((state) => {
+        return state.filters.name
+    })
+    const onChangeFilter = (evt) => {
+        const action = changeFilter(evt.target.value)
+        dispatch(action)
+       }; 
+       
     return(
         <section>
             <h3>Search by username</h3>
